@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Header, Icon, Container } from 'semantic-ui-react';
 import './App.css';
 import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement } from "./actions/index";
+import { increment, decrement } from "../actions/index";
 import { Redirect } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 
@@ -14,7 +14,7 @@ function App() {
   const isLogged = useSelector(state => state.isLogged);
   const dispatch = useDispatch();
 
-  const [theme, setTheme] = useState(); 
+  const [theme, setTheme] = useState(true);
 
   const decrease = () => {
     dispatch(decrement());
@@ -26,15 +26,15 @@ function App() {
   }
 
   const darkTheme = () => {
-    
+    setTheme(theme? theme : !theme);
   }
 
   const lightTheme = () => {
-
+    setTheme(!theme? theme : !theme);
   }
 
   return (
-    <div className="App">
+    <div className={theme ? "App" : "App-light"}>
     <div>
       <Button.Group
       compact
@@ -42,7 +42,7 @@ function App() {
       size='mini'
       style={{ padding: "1%" }}>
     <Button
-
+      onClick={lightTheme}
       inverted
       content='Light'
       color='white'
@@ -50,7 +50,7 @@ function App() {
     />
     <Button.Or />
     <Button 
-    onClick
+    onClick={darkTheme}
     inverted
     color='blue'
     content='Dark'
@@ -60,12 +60,13 @@ function App() {
   <Container
   textAlign='center'
   style={{ paddingTop: "15%"}}>
-    <Header id='header'
+    <Header className={theme ? "whiteHeader" : "darkHeader"}
     size='huge'
-    style={{
-      color: 'white'
-    }}
-    >React Counter <span className="number">{counter}</span> </Header>
+    >React Counter  </Header>
+    <Container 
+    textAlign='center'
+    style={{ fontSize: "2em", padding: "5%", fontWeight: "bold" }}
+    className="number">{counter}</Container>
     <Button.Group>
      <Button icon
       labelPosition='left'

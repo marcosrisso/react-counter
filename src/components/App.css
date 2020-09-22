@@ -1,0 +1,31 @@
+
+.App {
+  background-color: #32353d;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  
+}
+
+.number {
+  color: rgb(101, 170, 202);
+}
+
+.whiteHeader {
+color: white !important;
+
+}
+
+.darkHeader {
+color:black !important;
+}
+
+.App-light {
+  background-color: #e3e6ee;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+
+}
